@@ -8,13 +8,13 @@
     font-weight: bold; 
     cursor: pointer; 
     transition: background-color 0.3s, transform 0.2s;
+    margin-right: 30px;
   }
   
   .button:hover {
     background-color:#3a1a6d; 
-    padding: 17px 65px; 
   }
   
   .button:active {
-    transform: scale(0.95); /* Зменшення кнопки при натисканні */
+    transform: scale(0.95); 
   }

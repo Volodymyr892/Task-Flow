@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../../redux/store";
-import { updateTaskTitle } from "../../redux/task/taskSlice";
+import { resetTasks, updateTaskTitle } from "../../redux/task/taskSlice";
 import AddButton from "../AddButton/AddButton";
 import css from "./SideBar.module.css"
 
@@ -17,7 +17,12 @@ export default function  SideBar() {
     }
     return(
         <div className={css.container}>
-            <AddButton/>
+            <div>
+                <AddButton/>
+                <button onClick={() => dispatch(resetTasks())} className={css.button}>
+                    Delete Tasks
+                </button>
+            </div>
             {selectedTask && (
                 <div className={css.containerEdit}>
                     <h3 className={css.title}> Edit Task</h3>

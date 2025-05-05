@@ -30,8 +30,8 @@ export const tasksSlice = createSlice({
             state.tasks.push({
                 id,
                 position: {x: 100, y: 100 },
-                data: {label: `Task ${id}`},
                 type: "taskNode",
+                data: {label: `Task ${id}`},
             });
         },
         updateTaskTitle: (state, action: PayloadAction<{id: string; title: string}>)=>{
@@ -39,6 +39,7 @@ export const tasksSlice = createSlice({
             if (task) task.data.label = action.payload.title; 
         },
         updateEdges: (state, action: PayloadAction<Edge[]>)=>{
+            console.log("Updated edges:", action.payload);
             state.edges = action.payload;
         },
         updatePosition:(state, action: PayloadAction<{id: string; position: {x: number; y: number}}>)=>{
@@ -47,6 +48,11 @@ export const tasksSlice = createSlice({
         },
         setSelectedTask: (state, action: PayloadAction<string>)=>{
             state.selectedTaskId = action.payload;
+        },
+        resetTasks: (state) => {
+            state.tasks = [];
+            state.edges = [];
+            state.selectedTaskId = null;
         }
     }
 });
@@ -57,6 +63,7 @@ export const {
     updateEdges,
     updatePosition,
     setSelectedTask,
+    resetTasks,
 }= tasksSlice.actions;
 
 export const taskReducer = tasksSlice.reducer;

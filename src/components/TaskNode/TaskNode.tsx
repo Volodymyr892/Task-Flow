@@ -12,11 +12,11 @@ export default function TaskNode({ id, data }: any) {
 
     return(
         <div className={css.container} onClick={()=> dispatch(setSelectedTask(id))}>
-            <Handle type="target" position={Position.Top}/>
+            <Handle type="target" position={Position.Top}  className={css.handleHidden}/>
             <label className={css.label}>
                 <input className={css.input}  value={data.label} onChange={handleChange}/>
             </label>
-            <Handle type="target" position={Position.Bottom}/>
+            <Handle type="source" position={Position.Bottom} className={css.handleHidden}/>
         </div>
     )
 }

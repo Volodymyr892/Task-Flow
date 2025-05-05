@@ -1,12 +1,66 @@
-# React + Vite
+# Task Flow
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Цей проект є застосунком для управління задачами з використанням React, Redux та ReactFlow для візуального відображення задач. Користувачі можуть додавати задачі, змінювати їхні назви, а також створювати зв'язки між ними.
 
-Currently, two official plugins are available:
+## Запуск проекту
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 1. Клонування репозиторію
 
-## Expanding the ESLint configuration
+Спочатку потрібно клонувати репозиторій:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+git clone https://github.com/your-username/project-name.git
+cd project-name
+
+Щоб встановити всі необхідні залежності, скористайтеся менеджером пакетів npm або yarn:
+
+Якщо ви використовуєте npm:
+npm install
+Якщо ви використовуєте yarn:
+yarn install
+
+
+Після встановлення залежностей запустіть проект локально за допомогою команди:
+
+npm start
+Якщо ви використовуєте yarn:
+yarn start
+Проект буде доступний за адресою http://localhost:3000.
+
+
+У проекті використовуються наступні технології та бібліотеки:
+
+React: для створення інтерфейсу користувача.
+Redux: для керування станом додатку.
+ReactFlow: для візуалізації задач у вигляді графів.
+Redux Toolkit: для спрощення роботи з Redux.
+TypeScript: для забезпечення типізації у проекті.
+React Router (за потреби): для навігації між сторінками.
+redux-persist: для збереження стану Redux в localStorage.
+uuid: для генерації унікальних ідентифікаторів для задач і зв'язків
+
+
+Ось основна структура папок і файлів:
+/src
+  /components      - Компоненти UI
+    /AddButton     - Кнопка для додавання задачі
+    /SideBar       - Бокова панель для редагування задач
+    /FlowCanvas    - Компонент для візуалізації задач у вигляді графу
+    /TaskNode      - Компонент для окремої задачі
+  /redux           - Логіка Redux
+    /task          - Slice для задач
+  /App.tsx         - Головний компонент додатку
+  /index.html       - Точка входу
+
+
+AddButton: Компонент для додавання нової задачі в список.
+SideBar: Панель, де можна редагувати назву обраної задачі.
+FlowCanvas: Компонент, який використовує ReactFlow для відображення задач у вигляді графу з можливістю створення зв'язків між задачами.
+TaskNode: Компонент, який відображає одну задачу та дозволяє редагувати її назву.
+
+
+Для керування станом проекту використовується Redux. Ось основні частини стейту:
+
+tasks: Містить список задач.
+edges: Містить зв'язки між задачами.
+selectedTaskId: Зберігає id вибраної задачі для редагування.

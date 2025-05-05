@@ -5,56 +5,60 @@ import ReactFlow, {
     addEdge, 
     applyNodeChanges, 
     Connection, 
-    Edge,  
+    Edge, 
     Node, 
     NodeChange, 
     EdgeChange,
-
     applyEdgeChanges} from "reactflow";
 import { useCallback, useEffect, useState } from "react";
 import { setSelectedTask, updateEdges, updatePosition } from "../../redux/task/taskSlice";
 import css from "./FlowCanvas.module.css"
+import 'reactflow/dist/style.css';
 
 const nodeTypes  = {taskNode: TaskNode}
 
 export default function FlowCanvas() {
     const dispatch = useAppDispatch();
     const {tasks, edges} = useAppSelector((state) => state.tasks);
-    // console.log("🚀 ~ FlowCanvas ~ tasks:", tasks)
-
-    const uniqueTasks = tasks.filter((task, index, self) =>
-        index === self.findIndex(t => t.id === task.id)
-    );
+;
     const [nodes, setNodes] = useState<Node[]>([]); 
 
     const [localEdges, setLocalEdges] = useState<Edge[]>(edges); 
-  
+
     useEffect(() => {
-      setNodes(tasks);
+        setNodes(tasks);
     }, [tasks]);
-  
+
     useEffect(() => {
-      setLocalEdges(edges);
+        setLocalEdges(edges);
     }, [edges]);
-  
+
     const onNodesChange = useCallback(
-      (changes: NodeChange[]) => {
-        setNodes((nds) => applyNodeChanges(changes, nds));
-      },
-      []
+        (changes: NodeChange[]) => {
+            setNodes((nds) => applyNodeChanges(changes, nds));
+        },
+        []
     );
-  
+
     const onEdgesChange = useCallback(
-      (changes: EdgeChange[]) => {
-        setLocalEdges((eds) => applyEdgeChanges(changes, eds));
-      },
-      []
+        (changes: EdgeChange[]) => {
+            setLocalEdges((eds) => {
+                const updated = applyEdgeChanges(changes, eds);
+                dispatch(updateEdges(updated));
+                return updated;
+            });
+        },
+        [dispatch]
     );
 
     const onConnect = useCallback(
-        (params: Edge<any> | Connection)=>
-            dispatch(updateEdges(addEdge(params, localEdges))
-    ),[localEdges,dispatch])
+        (params: Edge<any> | Connection) => {
+            const updatedEdges = addEdge(params, localEdges);
+            setLocalEdges(updatedEdges); 
+            dispatch(updateEdges(updatedEdges));
+          },
+          [localEdges, dispatch]
+    );
 
     const onNodeDragStop = useCallback((_:any, node: Node)=>{
         dispatch(updatePosition({id: node.id, position: node.position}))
@@ -66,9 +70,10 @@ export default function FlowCanvas() {
     
     return(
         <div className={css.container}>
+            
             <ReactFlow
             nodes={nodes}
-            edges={edges}
+            edges={localEdges}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
@@ -77,7 +82,6 @@ export default function FlowCanvas() {
             onNodeClick={onNodeClick}
             fitView
             >
-                
             </ReactFlow>
         </div>
     )

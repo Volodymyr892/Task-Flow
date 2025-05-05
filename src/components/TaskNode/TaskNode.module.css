@@ -10,8 +10,20 @@
 }
 
 .label{
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     padding: 20px;
     max-width: 60px;
     border-radius: 5px;
 }
+.handleHidden {
+    width: 10px;       
+    height: 10px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    opacity: 0;
+    pointer-events: auto; 
+    cursor: crosshair;
+  }
+
+  
