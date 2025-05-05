@@ -1,0 +1,10 @@
+@import 'modern-normalize';
+a[href="https://reactflow.dev/"] {
+    display: none !important;
+  }
+.container{
+    background-color: rgb(221, 221, 221);
+    width: 1440px;
+    height: 100vh; 
+    margin: 0 auto;
+}

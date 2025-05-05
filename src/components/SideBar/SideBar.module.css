@@ -1,0 +1,29 @@
+.container{
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.containerEdit{
+    width: 300px;
+}
+.title{
+    font-size: 30px;
+    margin: 0 0 25px 0;
+}
+.input{
+    margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  box-shadow: none;
+  outline: none;
+  font: inherit;
+  color: inherit;
+}
+.label{
+    background-color: #b38df1;
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 200px;
+    color: #333333;
+}

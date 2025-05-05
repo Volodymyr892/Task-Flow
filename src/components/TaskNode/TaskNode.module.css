@@ -1,0 +1,17 @@
+.input{
+    margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  box-shadow: none;
+  outline: none;
+  font: inherit;
+  color: inherit;
+}
+
+.label{
+    background-color: white;
+    padding: 20px;
+    max-width: 60px;
+    border-radius: 5px;
+}
