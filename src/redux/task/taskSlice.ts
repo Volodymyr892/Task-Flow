@@ -39,7 +39,6 @@ export const tasksSlice = createSlice({
             if (task) task.data.label = action.payload.title; 
         },
         updateEdges: (state, action: PayloadAction<Edge[]>)=>{
-            console.log("Updated edges:", action.payload);
             state.edges = action.payload;
         },
         updatePosition:(state, action: PayloadAction<{id: string; position: {x: number; y: number}}>)=>{
